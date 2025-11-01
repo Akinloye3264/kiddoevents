@@ -1,0 +1,60 @@
+body {
+  font-family: 'Comic Sans MS', Comic Sans, cursive;
+  background: #fffde4;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Fredoka One', 'Baloo 2', Comic Sans MS, Comic Sans, cursive;
+  letter-spacing: 2px;
+}
+
+button:hover {
+  box-shadow: 0 0 0 3px #ffd60055;
+  transform: scale(1.03);
+  opacity: 0.96;
+}
+
+input:focus {
+  outline: 2px solid #ffd600;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -2,10 +2,7 @@
 # General
 # =====================================
 # OS and Editor files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+
 
 # Logs
 npm-debug.log*
@@ -46,5 +43,3 @@ frontend/dist/
 *.bak
 
 # Database backups or local files
-*.sql
-*.sqlite

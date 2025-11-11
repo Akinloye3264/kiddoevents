@@ -112,6 +112,54 @@ function App() {
     }
   };
 
+  function EventPackagesSection({ packages, onBook }) {
+    return (
+      <div className="footer-packages-section">
+        <h2 className="packages-title">Ticket Packages</h2>
+        <p className="packages-subtitle">
+          Choose the perfect package for your family and start creating unforgettable memories together.
+        </p>
+        <div className="packages-grid">
+          {packages.map(pkg => (
+            <div key={pkg.id} className={`package-card${pkg.is_popular ? ' popular' : ''}`}>
+              {pkg.is_popular && <div className="popular-badge">Most Popular</div>}
+              <div className="package-icon">{getIcon(pkg.icon)}</div>
+              <h3 className="package-name">{pkg.name}</h3>
+              <p className="package-description">{pkg.description}</p>
+              <div className="package-price">
+                <span className="price-amount">${pkg.price}</span>
+                <span className="price-label">per package</span>
+              </div>
+              <ul className="package-features">
+                {pkg.features && pkg.features.split('|').map((feature, idx) => (
+                  <li key={idx} className="package-feature">
+                    <span className="checkmark">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div className="package-spacer" />
+              <button
+                className="package-book-btn"
+                onClick={() => onBook(pkg)}
+                tabIndex={0}
+                type="button"
+              >
+                Book Now
+              </button>
+            </div>
+          ))}
+        </div>
+        <div className="special-offer-banner">
+          <p>
+            Special Offer: Book before December 15th and receive a 15% early bird discount! Use code{' '}
+            <span className="discount-code">TOGETHER2025</span>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       {/* Hero Section */}
@@ -197,8 +245,8 @@ function App() {
               <button className="btn-primary" onClick={handleBookExperience}>Choose a Package</button>
             </div>
           </div>
-        </div>
-      )}
+          </div>
+        )}
 
       {/* About the Event Section */}
       <section className="about-section">
@@ -259,46 +307,7 @@ function App() {
             <div className="packages-banner">
               <p>Special surprises throughout the day</p>
             </div>
-            <h2 className="packages-title">Ticket Packages</h2>
-            <p className="packages-subtitle">
-              Choose the perfect package for your family and start creating unforgettable memories together.
-            </p>
-            <div className="packages-grid">
-              {packages.map(pkg => (
-                <div key={pkg.id} className={`package-card ${pkg.is_popular ? 'popular' : ''}`}>
-                  {pkg.is_popular && (
-                    <div className="popular-badge">Most Popular</div>
-                  )}
-                  <div className="package-icon">{getIcon(pkg.icon)}</div>
-                  <h3 className="package-name">{pkg.name}</h3>
-                  <p className="package-description">{pkg.description}</p>
-                  <div className="package-price">
-                    <span className="price-amount">${pkg.price}</span>
-                    <span className="price-label">per package</span>
-                  </div>
-                  <ul className="package-features">
-                    {pkg.features && pkg.features.split('|').map((feature, idx) => (
-                      <li key={idx} className="package-feature">
-                        <span className="checkmark">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button 
-                    className="package-book-btn"
-                    onClick={() => handlePackageSelect(pkg)}
-                  >
-                    Book Now
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="special-offer-banner">
-              <p>
-                Special Offer: Book before December 15th and receive a 15% early bird discount! Use code{' '}
-                <span className="discount-code">TOGETHER2025</span>
-              </p>
-            </div>
+            <EventPackagesSection packages={packages} onBook={handlePackageSelect} />
           </div>
         </div>
       )}
@@ -413,6 +422,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Footer Packages Section (bottom of the page) */}
+      <EventPackagesSection packages={packages} onBook={handlePackageSelect} />
     </div>
   );
 }
